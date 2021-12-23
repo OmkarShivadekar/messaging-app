@@ -5,27 +5,27 @@ Inbox app using Java, Spring Boot and Apache Cassandra.  This is full web applic
 -   compose message
 -   send message
 -   view my message
-      - folder/label
-		  - inbox
-		  - sent
-		  - user folder
+	- folder/label
+	- inbox
+	- sent
+	- user folder
 -   reply, reply all
 -   view a single message
 
-non functional requirements
-	- high availability
-	- high scalability
-	- authentication
-	- autharization
+## Non functional requirements
+- high availability
+- high scalability
+- authentication
+- autharization
 
-UI
-	login
-	homepage
-	message detail(reading)
-	message editor (writing)
+## UI
+- login
+- homepage
+- message detail(reading)
+- message editor (writing)
 	
-Tech Stack
-	spring boot
-	thymeleaf
-	spring security
-	apache cassandra
+## Tech Stack
+- spring boot
+- thymeleaf
+- spring security
+- apache cassandra
