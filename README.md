@@ -18,6 +18,10 @@ Inbox app using Java, Spring Boot and Apache Cassandra.  This is full web applic
 - authentication
 - autharization
 
+## ER Diagram
+
+## Class Diagram
+
 ## UI
 - login
 - homepage
