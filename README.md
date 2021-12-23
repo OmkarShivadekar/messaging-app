@@ -19,8 +19,10 @@ Inbox app using Java, Spring Boot and Apache Cassandra.  This is full web applic
 - autharization
 
 ## ER Diagram
+!["ER Diagram"](https://github.com/OmkarShivadekar/messaging-app/blob/main/ER%20Diagram.jpg)
 
 ## Class Diagram
+!["Class Diagram"](https://github.com/OmkarShivadekar/messaging-app/blob/main/Class-diagram.jpeg)
 
 ## UI
 - login
