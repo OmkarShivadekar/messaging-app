@@ -1,7 +1,13 @@
-package com.demo;
+package com.demo.inbox;
 
 import java.nio.file.Path;
 
+import javax.annotation.PostConstruct;
+
+import com.demo.inbox.folders.Folder;
+import com.demo.inbox.folders.FolderRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.cassandra.CqlSessionBuilderCustomizer;
@@ -14,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class SpringGitHubLoginApplication {
+
+	@Autowired FolderRepository folderRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringGitHubLoginApplication.class, args);
@@ -31,6 +39,14 @@ public class SpringGitHubLoginApplication {
 	public CqlSessionBuilderCustomizer sessionBuilderCustomizer(DataStaxAstraProperties astraProperties){
 		Path bundle = astraProperties.getSecureConnectBundle().toPath();
 		return builder -> builder.withCloudSecureConnectBundle(bundle);
+	}
+
+	@PostConstruct
+	public void init(){
+
+		folderRepository.save(new Folder("OmkarShivadekar","Inbox","blue"));
+		folderRepository.save(new Folder("OmkarShivadekar","Sent","green"));
+		folderRepository.save(new Folder("OmkarShivadekar","Important","yellow"));
 	}
 	
 

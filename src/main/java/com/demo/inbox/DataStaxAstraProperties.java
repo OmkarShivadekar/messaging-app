@@ -1,4 +1,4 @@
-package com.demo;
+package com.demo.inbox;
 
 import java.io.File;
 
