@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.demo.inbox.folders.Folder;
 import com.demo.inbox.folders.FolderRepository;
+import com.demo.inbox.folders.FolderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class InboxController {
 
     @Autowired private FolderRepository folderRepository;
+
+    @Autowired private FolderService folderService;
     
     @GetMapping(value = "/")
     public String homePage(
@@ -30,7 +33,9 @@ public class InboxController {
 
         String userid = principal.getAttribute("login");
         List<Folder> userFolders = folderRepository.findAllById(userid);
+        List<Folder> userDefaultFolders = folderService.fetchDefaultFolder(userid);
         model.addAttribute("userFolders", userFolders);
+        model.addAttribute("userDefaultFolders", userDefaultFolders);
         return "inbox-page";
         
         
