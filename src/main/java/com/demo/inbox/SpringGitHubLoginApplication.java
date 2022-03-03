@@ -1,9 +1,14 @@
 package com.demo.inbox;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
+import com.demo.inbox.emaillist.EmailListItem;
+import com.demo.inbox.emaillist.EmailListItemKey;
+import com.demo.inbox.emaillist.EmailListItemRepository;
 import com.demo.inbox.folders.Folder;
 import com.demo.inbox.folders.FolderRepository;
 
@@ -22,6 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class SpringGitHubLoginApplication {
 
 	@Autowired FolderRepository folderRepository;
+
+	@Autowired EmailListItemRepository emailListItemRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringGitHubLoginApplication.class, args);
@@ -47,6 +54,22 @@ public class SpringGitHubLoginApplication {
 		folderRepository.save(new Folder("OmkarShivadekar","Inbox","blue"));
 		folderRepository.save(new Folder("OmkarShivadekar","Sent","green"));
 		folderRepository.save(new Folder("OmkarShivadekar","Important","yellow"));
+
+		for(int i =0; i<10; i++){
+			EmailListItemKey key = new EmailListItemKey();
+			key.setId("OmkarShivadekar");
+			key.setLabel("Inbox");
+			key.setTimeUUiID(Uuids.timeBased());
+
+			EmailListItem item = new EmailListItem();
+			item.setKey(key);
+			item.setTo(Arrays.asList("OmkarShivadekar"));
+			item.setSubject("Subject"+i);
+			item.setUnread(true);
+
+			emailListItemRepository.save(item);
+		}
+		
 	}
 	
 
