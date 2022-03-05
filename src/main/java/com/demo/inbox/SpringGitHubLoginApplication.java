@@ -6,6 +6,8 @@ import java.util.Arrays;
 import javax.annotation.PostConstruct;
 
 import com.datastax.oss.driver.api.core.uuid.Uuids;
+import com.demo.inbox.email.Email;
+import com.demo.inbox.email.EmailRepository;
 import com.demo.inbox.emaillist.EmailListItem;
 import com.demo.inbox.emaillist.EmailListItemKey;
 import com.demo.inbox.emaillist.EmailListItemRepository;
@@ -29,6 +31,8 @@ public class SpringGitHubLoginApplication {
 	@Autowired FolderRepository folderRepository;
 
 	@Autowired EmailListItemRepository emailListItemRepository;
+
+	@Autowired EmailRepository emailRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringGitHubLoginApplication.class, args);
@@ -68,6 +72,15 @@ public class SpringGitHubLoginApplication {
 			item.setUnread(true);
 
 			emailListItemRepository.save(item);
+
+			Email email = new Email();
+			email.setId(key.getTimeUUiID());
+			email.setFrom("OmkarShivadekar");
+			email.setSubject(item.getSubject());
+			email.setBody("body" + i);
+			email.setTo(item.getTo());
+			emailRepo.save(email);
+
 		}
 		
 	}
