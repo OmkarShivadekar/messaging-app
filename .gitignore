@@ -38,4 +38,4 @@ build/
 secure-connect.zip
 
 ### yml ###
-src/main/resources/application.yml
+application.yml
