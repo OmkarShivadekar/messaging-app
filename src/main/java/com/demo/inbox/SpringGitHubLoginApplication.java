@@ -67,7 +67,7 @@ public class SpringGitHubLoginApplication {
 
 			EmailListItem item = new EmailListItem();
 			item.setKey(key);
-			item.setTo(Arrays.asList("OmkarShivadekar"));
+			item.setTo(Arrays.asList("OmkarShivadekar","abc","def"));
 			item.setSubject("Subject"+i);
 			item.setUnread(true);
 

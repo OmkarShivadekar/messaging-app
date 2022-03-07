@@ -70,6 +70,10 @@
         </header>
       
         <nav>
+            <div class="card">
+                <a href="/compose" class="btn btn-primary">Compose Message</a>
+            </div>
+
             <div th:insert="components/folder-list :: folder-list (panelName='Folders', folders=${userDefaultFolders})" class="sidebar"></div>
             <div th:insert="components/folder-list :: folder-list (panelName = 'User Folders', folders = ${userFolders})" class="sidebar"></div> 
         </nav>
@@ -77,19 +81,33 @@
         <main>
             <div class="card">
                 <h5 class="card-header">View Email</h5>
-                <dl class="card-body">
-                    <dt>From</dt>
-                    <dd th:text="${email.from}"></dd>
+                <div class="card-body">
+                    <dl>    
+                        <dt>From</dt>
+                        <dd th:text="${email.from}"></dd>
 
-                    <dt>To</dt>
-                    <dd th:text="${toIds}"></dd>
+                        <dt>To</dt>
+                        <dd th:text="${toIds}"></dd>
 
-                    <dt>Subject</dt>
-                    <dd th:text="${email.subject}"></dd>
+                        <dt>Subject</dt>
+                        <dd th:text="${email.subject}"></dd>
 
-                    <dt>Body</dt>
-                    <dd th:text="${email.body}"></dd>
-                </dl>
+                        <dt>Body</dt>
+                        <dd th:text="${email.body}"></dd>
+                    </dl>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a class="btn btn-primary me-md-2" 
+                            th:href="@{'/compose?to=' +${email.from}}"
+                            type="button">Reply</a>
+
+                        <a class="btn btn-primary"
+                            th:href="@{'/compose?to=' + ${toIds} + ', ' + ${email.from}}"
+                            type="button">Reply All</a>
+
+                    </div>
+                </div>
+
             </div>
         
         </main>
